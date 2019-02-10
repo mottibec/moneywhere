@@ -1,8 +1,8 @@
-﻿import express = require("express");
+﻿import { Request, Response, Router } from "express";
 
-const router: express.Router = express.Router();
+const router: Router = Router();
 
-router.get("/user/:id", (request: express.Request, response: express.Response) => {
+router.get("/user/:id", (request: Request, response: Response) => {
     response.send('Hello world!');
 });
 

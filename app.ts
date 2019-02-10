@@ -1,5 +1,5 @@
-import express = require("express");
-import userRoutes = require("./routes/users");
+import express from "express";
+import * as userRoutes from "./routes/users";
 
 const app: express.Application = express();
 
