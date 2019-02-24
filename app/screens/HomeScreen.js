@@ -14,27 +14,27 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-  <View>
-    <MapView
-    provider={PROVIDER_GOOGLE}
-     style={styles.map}>
+      <View>
+        <MapView
+          provider={PROVIDER_GOOGLE}
+          style={styles.map}>
 
-    </MapView>
-    <View pointerEvents="none" style={styles.users}>
+        </MapView>
+        <View pointerEvents="none" style={styles.users}>
           {this.createUserCards()}
         </View>
-  </View>
-    );
-  }
-  createUserCards(){
-  const {users} = this.state;
-  return users.map(user => {    
-    return (
-      <View key={user.id} style={styles.member}>
-      <UserCard user={user}></UserCard>
       </View>
     );
-  });
+  }
+  createUserCards() {
+    const { users } = this.state;
+    return users.map(user => {
+      return (
+        <View key={user.id} style={styles.member}>
+          <UserCard user={user}></UserCard>
+        </View>
+      );
+    });
   }
 }
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  map:{
+  map: {
 
   }
 });
