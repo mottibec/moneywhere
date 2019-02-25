@@ -1,14 +1,12 @@
 import React from 'react';
 import {
-  Platform,
   Dimensions,
   StyleSheet,
   View,
   Text
 } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import UserCard from '../components/UserCard';
-import Geolocation from 'react-native-geolocation-service';
+import UserCarousel from '../components/UserCarousel';
 
 const screen = Dimensions.get('window');
 
@@ -35,18 +33,6 @@ export default class HomeScreen extends React.Component {
       ]
     };
   }
-  componentDidMount() {
-    Geolocation.getCurrentPosition(
-      (position) => {
-        console.log(position);
-      },
-      (error) => {
-        // See error code charts below.
-        console.log(error.code, error.message);
-      },
-      { enableHighAccuracy: true, timeout: 15000, maximumAge: 10000 }
-    );
-  }
   render() {
     return (
       <View style={styles.container}>
@@ -66,11 +52,7 @@ export default class HomeScreen extends React.Component {
     if (users === null) {
       return <View><Text>No Users Found</Text></View>;
     }
-    return users.map(user => {
-      return (
-        <UserCard user={user}></UserCard>
-      );
-    });
+    return (<UserCarousel users={users}></UserCarousel>);
   }
 }
 
