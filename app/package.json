@@ -19,7 +19,9 @@
     "react-native-geolocation-service": "^2.0.0",
     "react-native-maps": "^0.23.0",
     "react-native-snap-carousel": "^3.7.5",
-    "react-navigation": "^3.0.9"
+    "react-navigation": "^3.0.9",
+    "redux": "^4.0.1",
+    "reselect": "^4.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
