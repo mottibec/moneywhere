@@ -4,7 +4,9 @@ import UserCard from './UserCard';
 
 export default class UserCarousel extends React.Component {
     _renderItem({ item, index }) {
-        return <UserCard user={item}> </UserCard>
+        return (
+            <UserCard user={item} />
+        );
     }
 
     render() {

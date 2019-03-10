@@ -1,32 +1,54 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { Platform, StatusBar, StyleSheet, View, AsyncStorage, Text} from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
 import AppNavigator from './navigation/AppNavigator';
 
 export default class App extends React.Component {
   state = {
     isLoadingComplete: false,
+    isLoggedIn: true,
+    userId: null,
+    username: null,
+    jwt: null,
+    loading: false
   };
 
-  render() {
-    if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
-      return (
-        <AppLoading
-          startAsync={this._loadResourcesAsync}
-          onError={this._handleLoadingError}
-          onFinish={this._handleFinishLoading}
-        />
-      );
-    } else {
-      return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
-        </View>
-      );
-    }
-  }
+  login = (userId, username, token) => {
+    this.setState({
+      isLoggedIn: true,
+      userId,
+      username,
+      jwt: token,
+      loading: false
+    });
+  };
 
+  logout = () => {
+    this.setState({
+      isLoggedIn: false,
+      loading: false
+    })
+  };
+  render() {
+    const { isLoggedIn, isLoadingComplete } = this.state;
+    const { skipLoaingScreen } = this.props;
+
+    // if (!isLoadingComplete || !skipLoaingScreen) {
+    //   return (
+    //     <AppLoading
+    //       startAsync={this._loadResourcesAsync}
+    //       onError={this._handleLoadingError}
+    //       onFinish={this._handleFinishLoading}
+    //     />
+    //   );
+    // } else  {      
+    return (
+      <View style={styles.container}>
+        <Text> Hello </Text>
+        <AppNavigator />
+      </View>
+    )
+  };
   _loadResourcesAsync = async () => {
     return Promise.all([
       Asset.loadAsync([
