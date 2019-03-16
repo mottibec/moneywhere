@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Dimensions, Platform, Image, StyleSheet } from 'react-native';
+import { View, Text, Dimensions, Platform, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const IS_IOS = Platform.OS === 'ios';
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
@@ -20,12 +20,12 @@ const entryBorderRadius = 8;
 
 export default class UserCard extends React.Component {
     render() {
-        const { user } = this.props;
+        const { user, onClickAction } = this.props;
         return (
             <TouchableOpacity
                 activeOpacity={1}
                 style={styles.slideInnerContainer}
-                onPress={() => { alert(`You've clicked '${user.name}'`); }}
+                onPress={() => onClickAction(user)}
             >
                 <View style={styles.shadow} />
                 <View style={styles.imageContainer}>
@@ -36,12 +36,13 @@ export default class UserCard extends React.Component {
                     <View style={styles.radiusMask} />
                 </View>
                 <View style={styles.textContainer}>
-                    {user.name}
+                    <Text>{user.name}</Text>
                     <Text
                         style={styles.subtitle}
                         numberOfLines={2}
                     >
-                        {user.rating}
+                       {`rating: '${user.rating}'`}
+
                     </Text>
                 </View>
             </TouchableOpacity>

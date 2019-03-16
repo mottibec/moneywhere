@@ -18,7 +18,8 @@ export default class App extends React.Component {
     
     loginWithAuth0 = async () => {
         const redirectUrl = AuthSession.getRedirectUrl();
-
+        let auth0Domain = '';
+        let auth0ClientId = '';
         const result = await AuthSession.startAsync({
             authUrl: `${auth0Domain}/authorize` + toQueryString({
                 client_id: auth0ClientId,
@@ -46,7 +47,7 @@ export default class App extends React.Component {
         }
         // store session in storage and redirect back to the app
         const encodedToken = responseObj.id_token;
-        const decodedToken = jwtDecoder(encodedToken);
+        const decodedToken = this.jwtDecoder(encodedToken);
         AsyncStorage.setItem(
             '@todo-graphql:auth0',
             JSON.stringify({
@@ -59,7 +60,9 @@ export default class App extends React.Component {
             this.props.login(decodedToken.sub, decodedToken.nickname, encodedToken)
         })
     };
-
+    jwtDecoder(token){
+        return {};
+    };
     render() {
         return (
             <View style={styles.container}>
