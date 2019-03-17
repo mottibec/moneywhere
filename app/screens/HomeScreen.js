@@ -5,7 +5,7 @@ import {
   View,
   Text
 } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import UserCarousel from '../components/UserCarousel';
 
 const screen = Dimensions.get('window');
@@ -181,8 +181,8 @@ export default class HomeScreen extends React.Component {
   };
 
   initialRegion = {
-    latitude: 37.600425,
-    longitude: -122.385861,
+    latitude: 40.693451,
+    longitude: -73.917007,
     latitudeDelta: LATITUDE_DELTA,
     longitudeDelta: LONGITUDE_DELTA,
   };
@@ -191,24 +191,143 @@ export default class HomeScreen extends React.Component {
     super();
     this.state = {
       users: [
-        { name: "motti", id: 1, rating: 5, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "moshe", id: 2, rating: 4, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "david", id: 3, rating: 3, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "matt", id: 4, rating: 1, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "mojo", id: 5, rating: 2, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "nepton", id: 6, rating: 4, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "dave", id: 7, rating: 3, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "jack", id: 8, rating: 2, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "mordechai", id: 9, rating: 5, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "sima", id: 10, rating: 5, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "sonya", id: 11, rating: 3, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "boris", id: 12, rating: 5, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" },
-        { name: "nave", id: 13, rating: 2, avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" }
+        {
+          name: "motti",
+          id: 1,
+          rating: 5,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.693451,
+            longitude: -73.917007
+
+          }
+        },
+        {
+          name: "moshe",
+          id: 2,
+          rating: 4,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.695839,
+            longitude: -73.921831
+          }
+        },
+        {
+          name: "david",
+          id: 3,
+          rating: 3,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.702899,
+            longitude: -73.928379
+          }
+        },
+        {
+          name: "matt",
+          id: 4,
+          rating: 1,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.701891,
+            longitude: -73.923305
+          }
+        },
+        {
+          name: "mojo",
+          id: 5,
+          rating: 2,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.705730,
+            longitude: -73.930383
+          }
+        },
+        {
+          name: "nepton",
+          id: 6,
+          rating: 4,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.7063481,
+            longitude: -73.920817
+          }
+        },
+        {
+          name: "dave",
+          id: 7,
+          rating: 3,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.707031,
+            longitude: -73.915112
+          }
+        },
+        {
+          name: "jack",
+          id: 8,
+          rating: 2,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.708332,
+            longitude: -73.933985
+          }
+        },
+        {
+          name: "mordechai",
+          id: 9,
+          rating: 5,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.709341,
+            longitude: -73.920687
+          }
+        },
+        {
+          name: "sima",
+          id: 10,
+          rating: 5,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.706543,
+            longitude: -73.921288
+          }
+        },
+        {
+          name: "sonya",
+          id: 11,
+          rating: 3,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.693451,
+            longitude: -73.914682
+          }
+        },
+        {
+          name: "boris",
+          id: 12,
+          rating: 5,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.707128,
+            longitude: -73.921073
+          }
+        },
+        {
+          name: "nave",
+          id: 13,
+          rating: 2,
+          avatar: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg",
+          location: {
+            latitude: 40.711976,
+            longitude: -73.912880
+          }
+        }
       ]
     };
   }
 
   render() {
+    const { users } = this.state;
     return (
       <View style={styles.container}>
         <MapView
@@ -217,16 +336,26 @@ export default class HomeScreen extends React.Component {
           style={styles.map}
           initialRegion={this.initialRegion}
           customMapStyle={mapStyle}>
+          {this.createUserMarkers(users)}
         </MapView>
         <View style={styles.users}>
-          {this.createUserCards()}
+          {this.createUserCards(users)}
         </View>
       </View>
     );
   };
-
-  createUserCards() {
-    const { users } = this.state;
+  createUserMarkers(users) {
+    return (
+      users.map(user => (
+        <Marker
+          key={user.id}
+          coordinate={user.location}
+          title={user.name}
+        />
+      ))
+    )
+  };
+  createUserCards(users) {
     if (users === null) {
       return (
         <View>
@@ -235,9 +364,9 @@ export default class HomeScreen extends React.Component {
       );
     }
     return (
-      <UserCarousel 
-      users={users}
-      onClickAction={(user) => alert(user.name)}
+      <UserCarousel
+        users={users}
+        onClickAction={(user) => alert(user.name)}
       >
       </UserCarousel>
     );

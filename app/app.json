@@ -4,6 +4,7 @@
     "slug": "MoneyWhere",
     "privacy": "public",
     "sdkVersion": "32.0.0",
+    "entryPoint":"App.js",
     "platforms": [
       "ios",
       "android"

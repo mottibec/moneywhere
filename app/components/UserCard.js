@@ -1,4 +1,5 @@
 import React from 'react';
+import StarRating from 'react-native-star-rating';
 import { View, Text, Dimensions, Platform, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 const IS_IOS = Platform.OS === 'ios';
@@ -37,13 +38,12 @@ export default class UserCard extends React.Component {
                 </View>
                 <View style={styles.textContainer}>
                     <Text>{user.name}</Text>
-                    <Text
-                        style={styles.subtitle}
-                        numberOfLines={2}
-                    >
-                       {`rating: '${user.rating}'`}
-
-                    </Text>
+                    <StarRating
+                        containerStyle={styles.stars}
+                        disabled={true}
+                        maxStars={5}
+                        rating={user.rating}
+                    />
                 </View>
             </TouchableOpacity>
         );
@@ -134,5 +134,9 @@ const styles = StyleSheet.create({
     },
     subtitleEven: {
         color: 'rgba(255, 255, 255, 0.7)'
+    },
+    stars: {
+        width: 25,
+        height: 25,
     }
 });
