@@ -23,11 +23,9 @@ export default class UserCard extends React.Component {
     render() {
         const { user, onClickAction } = this.props;
         return (
-            <TouchableOpacity
+            <View
                 activeOpacity={1}
-                style={styles.slideInnerContainer}
-                onPress={() => onClickAction(user)}
-            >
+                style={styles.slideInnerContainer}>
                 <View style={styles.shadow} />
                 <View style={styles.imageContainer}>
                     <Image
@@ -45,7 +43,12 @@ export default class UserCard extends React.Component {
                         rating={user.rating}
                     />
                 </View>
-            </TouchableOpacity>
+                <TouchableOpacity
+                    style={styles.pingButton}
+                    onPress={() => onClickAction(user)}>
+                    <Text>{"PING"}</Text>
+                </TouchableOpacity>
+            </View>
         );
     };
 };
@@ -138,5 +141,9 @@ const styles = StyleSheet.create({
     stars: {
         width: 25,
         height: 25,
+    },
+    pingButton: {
+        width: itemWidth,
+        height: 10,
     }
 });

@@ -1,23 +1,14 @@
 import React from 'react';
-import {
-    Image,
-    Platform,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Image, StyleSheet, Text, View, } from 'react-native';
 
 export default class ProfileScreen extends React.Component {
     render() {
-        return
-        <View>
-            <ScrollView>
+        return (
+            <View>
                 <Image source={this.userProfile} style={styles.profilePicure}></Image>
                 <Text>{this.rating}</Text>
-            </ScrollView>
-        </View>
+            </View>
+        )
     }
 }
 const styles = StyleSheet.create({

@@ -9,9 +9,7 @@ export default class SettingsScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>
-          {"settings"}
-        </Text>
+        <Text>{"settings"}</Text>
       </View>
     );
   }

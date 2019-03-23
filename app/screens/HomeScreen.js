@@ -331,7 +331,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
         <MapView
-          ref={map => this.map = map}
+          ref={map => this._map = map}
           provider={PROVIDER_GOOGLE}
           style={styles.map}
           initialRegion={this.initialRegion}
@@ -343,6 +343,18 @@ export default class HomeScreen extends React.Component {
         </View>
       </View>
     );
+  };
+  centerMapOnUser(userIndex) {
+    const { users } = this.state;
+    let user = users[userIndex];
+    const mapRef = this._map;
+
+    mapRef.animateToRegion({
+      latitude: user.location.latitude,
+      longitude: user.location.longitude,
+      latitudeDelta: 0.0315,
+      longitudeDelta: 0.0258
+    });
   };
   createUserMarkers(users) {
     return (
@@ -366,7 +378,8 @@ export default class HomeScreen extends React.Component {
     return (
       <UserCarousel
         users={users}
-        onClickAction={(user) => alert(user.name)}
+        onClickAction={(user) => alert(`Ping ${user.name}`)}
+        onSnapToItem={(user) => this.centerMapOnUser(user)}
       >
       </UserCarousel>
     );

@@ -25,7 +25,7 @@ export default class UserCarousel extends React.Component {
     }
 
     render() {
-        const { users, onClickAction } = this.props;
+        const { users, onClickAction, onSnapToItem} = this.props;
         return (
             <Carousel
                 ref={(c) => { this._carousel = c; }}
@@ -33,6 +33,7 @@ export default class UserCarousel extends React.Component {
                 renderItem={({ item, index }) => this._renderItem(item, index, onClickAction)}
                 sliderWidth={sliderWidth}
                 itemWidth={itemWidth}
+                onSnapToItem={onSnapToItem}
             />
         );
     }
