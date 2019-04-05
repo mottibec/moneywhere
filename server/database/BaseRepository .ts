@@ -13,11 +13,11 @@ export abstract class BaseRepository<T> implements IRepository<T>  {
     }
 
     find(item: T): Promise<T[]> {
-       
+
     }
 
     findOne(id: string): Promise<T> {
         let item = this._items.find(item => item.id == id);
-       return Promise.resolve(item);
+        return Promise.resolve(item);
     }
 }
