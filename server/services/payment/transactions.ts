@@ -1,5 +1,5 @@
 export default class Transactions {
-    getTransactions(date:Date) {
+    getTransactions(date: Date) {
         
     }
 }
