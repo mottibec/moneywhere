@@ -12,12 +12,6 @@ export abstract class BaseRepository<T> implements IRepository<T>  {
         throw new Error("Method not implemented.");
     }
 
-    find(item: T): Promise<T[]> {
-
-    }
-
-    findOne(id: string): Promise<T> {
-        let item = this._items.find(item => item.id == id);
-        return Promise.resolve(item);
-    }
+    abstract find(item: T): Promise<T[]>;
+    abstract findOne(id:string): Promise<T>;
 }

@@ -2,38 +2,44 @@
 import { UserRepository } from "../database/UserRepository";
 import { UserLocationService } from "../services/userLocation"
 
-const router: Router = Router();
-const repository: UserRepository = new UserRepository();
-const locationService: UserLocationService = new UserLocationService();
+export default class UserController {
+    private _router: Router;
+    public route: string = "/user";
+    private userRepository: UserRepository = new UserRepository();
+    private locationService: UserLocationService = new UserLocationService();
 
-router.post("/user/", async (request: Request, response: Response) => {
-    let user = request.body.user;
-    let result = await repository.create(user);
-
-    if (result) {
-        response.status(200);
+    constructor() {
+        this._router = Router();
     }
-    else {
-        response.status(400);
+    initRoutes() {
+        this._router.post(this.route, this.createUser);
+        this._router.get(`${this.route}/:id`, this.getUser);
+        this._router.get(`${this.route}/:location`, this.getUsersByLocation);
+        this._router.post(`${this.route}/:id/rate`, this.rateUser);
     }
-});
-
-router.get("/user/:id", (request: Request, response: Response) => {
-    let id = request.body.id;
-    let user = repository.findOne(id);
-    response.send(user)
-});
-
-router.get("/user/:location", (request: Request, response: Response) => {
-    var location = request.body.location;
-    var closeByUsers = locationService.getUsersByLocation(location, 2);
-    response.send(closeByUsers)
-});
-
-
-router.post("/user/:id/rate", async (request: Request, response: Response) => {
-    let rating = request.body.rating;
-    let userId = request.body.user.id;
-    await repository.update();
-})
-export { router };
+    async createUser(request: Request, response: Response) {
+        let user = request.body.user;
+        let result = await this.userRepository.create(user);
+        let resultCode = result ? 200 : 400;
+        response.status(resultCode);
+    }
+    getUser(request: Request, response: Response) {
+        let id = request.body.id;
+        let user = this.userRepository.findOne(id);
+        response.send(user)
+    }
+    getUsersByLocation(request: Request, response: Response) {
+        var location = request.body.location;
+        var closeByUsers = this.locationService.getUsersByLocation(location, 2);
+        response.send(closeByUsers)
+    }
+    rateUser(request: Request, response: Response) {
+        let rating = request.body.rating;
+        let userId = request.body.user.id;
+        let user = {
+            id: userId,
+            rating: rating
+        }
+        await this.userRepository.update(user);
+    }
+}

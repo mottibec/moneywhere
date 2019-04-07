@@ -26,9 +26,11 @@
     "@types/express": "^4.16.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.11",
+    "socket.io": "^2.2.0",
     "typescript": "^3.3.3"
   },
   "devDependencies": {
-    "@types/mongoose": "^5.3.12"
+    "@types/mongoose": "^5.3.12",
+    "@types/socket.io": "^2.1.2"
   }
 }
