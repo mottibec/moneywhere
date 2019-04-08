@@ -5,5 +5,5 @@ import UserController from "./routes/users";
 const app = new App([
     new UserController(),
     new TransactionController()]
-    , 300);
+    , 3000);
 app.listen();

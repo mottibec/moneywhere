@@ -1,21 +1,25 @@
 ﻿import { Request, Response, Router } from "express";
 import { UserRepository } from "../database/UserRepository";
 import { UserLocationService } from "../services/userLocation"
+import TransactionService from "../services/transactionService";
 
 export default class UserController {
-    private _router: Router;
+    public router: Router;
     public route: string = "/user";
     private userRepository: UserRepository = new UserRepository();
     private locationService: UserLocationService = new UserLocationService();
+    private transactionService: TransactionService = new TransactionService();
 
     constructor() {
-        this._router = Router();
+        this.router = Router();
+        this.initRoutes();
     }
     initRoutes() {
-        this._router.post(this.route, this.createUser);
-        this._router.get(`${this.route}/:id`, this.getUser);
-        this._router.get(`${this.route}/:location`, this.getUsersByLocation);
-        this._router.post(`${this.route}/:id/rate`, this.rateUser);
+        this.router.get(`${this.route}/:id`, this.getUser);
+        this.router.get(`${this.route}/:location`, this.getUsersByLocation);
+        this.router.post(this.route, this.createUser);
+        this.router.post(`${this.route}/:id/rate`, this.rateUser);
+        this.router.post(`${this.route}/ping`, this.pingUser);
     }
     async createUser(request: Request, response: Response) {
         let user = request.body.user;
@@ -40,6 +44,11 @@ export default class UserController {
             id: userId,
             rating: rating
         }
-        await this.userRepository.update(user);
+        response.send(200);
+    }
+    async pingUser(request: Request, response: Response) {
+        let user = request.body.userId;
+        await this.transactionService.pingUser(user);
+        response.send(200);
     }
 }

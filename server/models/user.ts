@@ -1,13 +1,11 @@
-import { balance } from "./balance";
-import { review } from "./review";
-import { transaction } from "./transaction";
+import { location } from "./location";
 
 export interface user {
     id: string;
     name: string;
-    phone: string;
-    email: string;
-    balance: balance[];
-    reviews: review[];
-    transactions: transaction[];
+    avatar: string;
+    phone?: string;
+    email?: string;
+    rating: number;
+    location: location;
 }

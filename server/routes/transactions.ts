@@ -1,18 +1,30 @@
-import { Request, Response, Router } from "express";
+import { Request, Response, Router, NextFunction } from "express";
 import { TransactionRepository } from "../database/TransactionRepository";
 
 export default class TransactionController {
-   private _router: Router;
+   public router: Router;
    public route: string = "/transaction";
-   private transactionRepository: TransactionRepository = new TransactionRepository();
+   public transactionRepository: TransactionRepository;
+
    constructor() {
-      this._router = Router();
+      this.transactionRepository = new TransactionRepository();
+      this.router = Router();
+      this.initRoutes();
+      this.getTransactionHistory = this.getTransactionHistory.bind(this)
    }
    initRoutes() {
-      this._router.get(`${this.route}/:userId`, this.getTransactionHistory);
+      this.router.get(`${this.route}/:userId`, this.getTransactionHistory);
    }
-   async getTransactionHistory(request: Request, response: Response) {
-      var transactions = await this.transactionRepository.findByUser(request.body.userId)
-      response.send(transactions);
+   async getTransactionHistory(request: Request, response: Response, next: NextFunction) {
+      console.log(next);
+      console.log(this);
+      const userId = request.params.userId;
+      try {
+         let transactions = await this.transactionRepository.findByUser(userId);
+         response.send(transactions);
+      }
+      catch (err) {
+         console.log(err);
+      }
    }
 }

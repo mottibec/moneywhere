@@ -1,4 +1,4 @@
 export interface balance {
-    currencyCode:string;
-    amount:number;
+    currencyCode: string;
+    amount: number;
 }

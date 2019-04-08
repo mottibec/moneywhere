@@ -2,8 +2,8 @@ import { user } from "./user";
 
 export interface transaction {
     id: string;
-    fromUser: user;
-    toUser: user;
+    fromUser: string;
+    toUser: string;
     amount: number;
     currencyCode: string;
     onDate: Date
