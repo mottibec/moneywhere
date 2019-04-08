@@ -5,15 +5,13 @@ class App {
     private port: number;
 
     constructor(controllers: any[], port: number) {
-        console.log(`constructor`);
         this.app = express();
         this.port = port;
         this.configRoutes(controllers);
     }
     configRoutes(controllers: any[]) {
-        console.log(`configRoutes ${controllers.length}`);
         controllers.forEach((controller) => {
-            console.log(`${controller.route} registered`);
+            console.log(`'${controller.route}' registered with ${controller.router.stack.length} routes`);
             this.app.use('/', controller.router);
         });
     }

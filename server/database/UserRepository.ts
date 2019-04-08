@@ -142,7 +142,7 @@ export class UserRepository extends BaseRepository<user> {
     return Promise.resolve(this._items);
   }
   findOne(id: string): Promise<user> {
-    const user = this._items.find(user => user.id == id);
+    const user = this._items.find(user => user.id === id);
     if (!user) {
       return Promise.reject();
     }

@@ -18,6 +18,18 @@
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch TS Program",
+            "runtimeArgs": [
+                "-r",
+                "ts-node"
+            ],
+            "args": [
+                "${workspaceFolder}\\server.ts"
+            ]
         }
     ]
 }

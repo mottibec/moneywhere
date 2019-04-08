@@ -15,11 +15,11 @@ export default class UserController {
         this.initRoutes();
     }
     initRoutes() {
-        this.router.get(`${this.route}/:id`, this.getUser);
-        this.router.get(`${this.route}/:location`, this.getUsersByLocation);
-        this.router.post(this.route, this.createUser);
-        this.router.post(`${this.route}/:id/rate`, this.rateUser);
-        this.router.post(`${this.route}/ping`, this.pingUser);
+        this.router.get(`${this.route}/:id`, (request: Request, response: Response) => this.getUser(request, response));
+        this.router.get(`${this.route}/:location`, (request: Request, response: Response) => this.getUsersByLocation(request, response));
+        this.router.post(this.route, (request: Request, response: Response) => this.createUser(request, response));
+        this.router.post(`${this.route}/:id/rate`, (request: Request, response: Response) => this.rateUser(request, response));
+        this.router.post(`${this.route}/ping`, (request: Request, response: Response) => this.pingUser(request, response));
     }
     async createUser(request: Request, response: Response) {
         let user = request.body.user;
@@ -27,9 +27,9 @@ export default class UserController {
         let resultCode = result ? 200 : 400;
         response.status(resultCode);
     }
-    getUser(request: Request, response: Response) {
-        let id = request.body.id;
-        let user = this.userRepository.findOne(id);
+    async getUser(request: Request, response: Response) {
+        let id = request.params.id;
+        let user = await this.userRepository.findOne(id);
         response.send(user)
     }
     getUsersByLocation(request: Request, response: Response) {

@@ -1,5 +1,6 @@
 import { Request, Response, Router, NextFunction } from "express";
 import { TransactionRepository } from "../database/TransactionRepository";
+import { request } from "http";
 
 export default class TransactionController {
    public router: Router;
@@ -10,14 +11,11 @@ export default class TransactionController {
       this.transactionRepository = new TransactionRepository();
       this.router = Router();
       this.initRoutes();
-      this.getTransactionHistory = this.getTransactionHistory.bind(this)
    }
    initRoutes() {
-      this.router.get(`${this.route}/:userId`, this.getTransactionHistory);
+      this.router.get(`${this.route}/:userId`, (request: Request, response: Response) => this.getTransactionHistory(request, response));
    }
-   async getTransactionHistory(request: Request, response: Response, next: NextFunction) {
-      console.log(next);
-      console.log(this);
+   async getTransactionHistory(request: Request, response: Response) {
       const userId = request.params.userId;
       try {
          let transactions = await this.transactionRepository.findByUser(userId);
