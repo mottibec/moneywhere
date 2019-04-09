@@ -1,0 +1,17 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+
+  ],
+  "description": "ATM anywhere",
+  "env": {
+  },
+  "formation": {
+  },
+  "name": "moneywhere",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
