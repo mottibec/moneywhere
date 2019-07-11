@@ -524,3 +524,21 @@ patch:
         patched: '2019-07-04T05:04:25.526Z'
     - expo > expo-print > babel-preset-expo > metro-react-native-babel-preset > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2019-07-04T05:04:25.526Z'
+    - snyk > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > snyk-nodejs-lockfile-parser > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > snyk-config > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > snyk-nuget-plugin > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > inquirer > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-07-11T18:13:08.235Z'
